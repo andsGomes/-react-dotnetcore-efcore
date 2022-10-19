@@ -22,10 +22,11 @@ export const App = () => {
     e.preventDefault();
 
     const atividade = {
-      id: document.getElementById('id').vvalue,
+      id: document.getElementById('id').value,
       descricao: document.getElementById('descricao').value
     }
-    atividades.push(atividade);
+    
+    setAtividades([...atividades, {...atividade}]); 
   }
 
   return (
