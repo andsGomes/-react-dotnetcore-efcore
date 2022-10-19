@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
+
+let initialState = [
+  {
+    id: 1,
+    descricao: 'Primeira Atividade'
+  },
+  {
+    id: 2,
+    descricao: 'Segunda Atividade'
+  }
+]
+
+
+export const App = () => {
+
+  const [atividades, setAtividades] = React.useState(initialState);
+
+  function addAtividade(e) {
+
+    e.preventDefault();
+
+    const atividade = {
+      id: document.getElementById('id').vvalue,
+      descricao: document.getElementById('descricao').value
+    }
+    atividades.push(atividade);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <>
+      <div className="container mt-4">
+        <form>
+          <input type="text" id="id" name="id" placeholder="id" />
+          <input type="text" id="descricao" name="descricao" placeholder="descricao" />
+          <button onClick={addAtividade}>+ Atividade</button>
+        </form>
+        <div className="mt-3">
+          <ul className="list-group">
+            {atividades.map(ativ => (
+              <li className="list-group-item" key={ativ.id}>{ativ.id} - {ativ.descricao}</li>
+            ))}
 
-export default App;
+
+          </ul>
+        </div>
+      </div>
+
+    </>
+  )
+}
