@@ -25,26 +25,41 @@ export const App = () => {
       id: document.getElementById('id').value,
       descricao: document.getElementById('descricao').value
     }
-    
-    setAtividades([...atividades, {...atividade}]); 
+
+    setAtividades([...atividades, { ...atividade }]);
   }
 
   return (
     <>
       <div className="container mt-4">
-        <form>
-          <input type="text" id="id" name="id" placeholder="id" />
-          <input type="text" id="descricao" name="descricao" placeholder="descricao" />
-          <button onClick={addAtividade}>+ Atividade</button>
+        <form className=" row g-3 ">
+          <div className="col-md-6">
+            <label htmlFor="id" className="form-label">Id</label>
+            <input className="form-control form-control-sm" type="text" id="id" name="id" placeholder="id" />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="descricao" className="form-label">Descricao</label>
+            <input className="form-control form-control-sm" type="text" id="descricao" name="descricao" placeholder="descricao" />
+          </div>
+          <div className="col-md-12">
+            <button className="btn btn-outline-secondary btn-sm" onClick={addAtividade}>+ Atividade</button>
+          </div>
+          <div className="col-md-12 text-secondary">
+            <hr/>
+          </div>
         </form>
         <div className="mt-3">
-          <ul className="list-group">
-            {atividades.map(ativ => (
-              <li className="list-group-item" key={ativ.id}>{ativ.id} - {ativ.descricao}</li>
-            ))}
-
-
-          </ul>
+          {atividades.map(ativ => (
+            <div className="card mb-3 shadow-sm p-1" key={ativ.id}>
+              <div className="card-body">
+                <h5 className="card-title">
+                  <span className="badge rounded text-bg-secondary">{ativ.id}</span> - {ativ.descricao}
+                </h5>
+                <h6 className="card-subtitle mb-2 text-muted"></h6>
+                <p className="card-text"></p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
