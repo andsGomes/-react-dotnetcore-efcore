@@ -1,13 +1,20 @@
 import React from 'react'
 
 
+
+
+
 let initialState = [
   {
     id: 1,
+    prioridade : 'Baixa',
+    titulo : 'Primeira Atividade',
     descricao: 'Primeira Atividade'
   },
   {
     id: 2,
+    prioridade : 'Alta',
+    titulo : 'Segunda Atividade',
     descricao: 'Segunda Atividade'
   }
 ]
@@ -23,6 +30,8 @@ export const App = () => {
 
     const atividade = {
       id: document.getElementById('id').value,
+      prioridade  : document.getElementById('prioridade').value,
+      titulo : document.getElementById('titulo').value,
       descricao: document.getElementById('descricao').value
     }
 
@@ -38,6 +47,19 @@ export const App = () => {
             <input className="form-control form-control-sm" type="text" id="id" name="id" placeholder="id" />
           </div>
           <div className="col-md-6">
+            <label htmlFor="prioridade" className="form-label">Prioridade</label>
+            <select name="prioridade" id="prioridade" className="form-select form-select-sm">
+               <option defaultValue="0">Selecione</option>
+               <option value="1">Baixa</option>
+               <option value="2">Normal</option>
+               <option value="3">Alta</option>
+            </select>
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="titulo" className="form-label">Titulo</label>
+            <input className="form-control form-control-sm" type="text" id="titulo" name="titulo" placeholder="titulo" />
+          </div>
+          <div className="col-md-6">
             <label htmlFor="descricao" className="form-label">Descricao</label>
             <input className="form-control form-control-sm" type="text" id="descricao" name="descricao" placeholder="descricao" />
           </div>
@@ -45,18 +67,51 @@ export const App = () => {
             <button className="btn btn-outline-secondary btn-sm" onClick={addAtividade}>+ Atividade</button>
           </div>
           <div className="col-md-12 text-secondary">
-            <hr/>
+            <hr />
           </div>
         </form>
         <div className="mt-3">
           {atividades.map(ativ => (
             <div className="card mb-3 shadow-sm p-1" key={ativ.id}>
               <div className="card-body">
-                <h5 className="card-title">
-                  <span className="badge rounded text-bg-secondary">{ativ.id}</span> - {ativ.descricao}
-                </h5>
-                <h6 className="card-subtitle mb-2 text-muted"></h6>
-                <p className="card-text"></p>
+                <div className="d-flex justify-content-between">
+                  <h5 className="card-title">
+                    <span className="badge rounded text-bg-secondary me-1">{ativ.id}</span> - {ativ.titulo}
+                  </h5>
+                  <h6>Prioridade :
+                    <span className="ms-1 text-black">
+                      <i className="ms-2 me-2 far fa-meh"></i>
+                      {ativ.prioridade}
+                    </span>
+                  </h6>
+                </div>
+                <p className="card-text">{ativ.descricao}</p>
+                <div className="d-flex justify-content-end pt-2 border-top">
+                  <button
+                    className="btn btn-outline-primary btn-sm me-1"
+                    style={
+                      {
+                        "--bs-btn-padding-x": "1.5rem",
+                        "--bs-btn-padding-y": ".25rem",
+                        "--bs-btn-font-size": ".75rem"
+                      }
+                    }>
+                    <i className="fas fa-pen me-2"></i>
+                    Editar
+                  </button>
+                  <button
+                    className="btn btn-outline-danger btn-sm "
+                    style={
+                      {
+                        "--bs-btn-padding-x": "1.5rem",
+                        "--bs-btn-padding-y": ".25rem",
+                        "--bs-btn-font-size": ".75rem"
+                      }
+                    }>
+                      <i className="fas fa-trash me-2"></i>
+                    Deletar
+                  </button>
+                </div>
               </div>
             </div>
           ))}
