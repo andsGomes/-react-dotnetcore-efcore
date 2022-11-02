@@ -1,9 +1,6 @@
 import React from 'react'
 
 
-
-
-
 let initialState = [
   {
     id: 1,
@@ -50,9 +47,9 @@ export const App = () => {
             <label htmlFor="prioridade" className="form-label">Prioridade</label>
             <select name="prioridade" id="prioridade" className="form-select form-select-sm">
                <option defaultValue="0">Selecione</option>
-               <option value="1">Baixa</option>
-               <option value="2">Normal</option>
-               <option value="3">Alta</option>
+               <option value="Baixa">Baixa</option>
+               <option value="Normal">Normal</option>
+               <option value="Alta">Alta</option>
             </select>
           </div>
           <div className="col-md-6">
